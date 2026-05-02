@@ -160,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     if (_currentPage == _pages.length - 1) {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const RoleSwitcher()),
+                        MaterialPageRoute(builder: (context) => const RoleSelectionScreen()),
                       );
                     } else {
                       _pageController.nextPage(
@@ -191,7 +191,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const RoleSwitcher()),
+                        MaterialPageRoute(builder: (context) => const RoleSelectionScreen()),
                       );
                     },
                     child: Text(

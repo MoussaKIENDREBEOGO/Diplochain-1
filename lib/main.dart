@@ -79,76 +79,120 @@ class DiploChainApp extends StatelessWidget {
   }
 }
 
-class RoleSwitcher extends StatefulWidget {
-  const RoleSwitcher({super.key});
-
-  @override
-  State<RoleSwitcher> createState() => _RoleSwitcherState();
-}
-
-class _RoleSwitcherState extends State<RoleSwitcher> {
-  int _selectedRole = 0;
-
-  final List<Widget> _screens = [
-    const PublicVerificationPortal(),
-    const RecruiterDashboard(),
-    const UniversityDashboard(),
-    const StudentDashboard(),
-  ];
+class RoleSelectionScreen extends StatelessWidget {
+  const RoleSelectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedRole],
-      floatingActionButton: FloatingActionButton(
-        mini: true,
-        onPressed: _showRolePicker,
-        tooltip: 'Changer de Rôle',
-        backgroundColor: AppTheme.primaryGreen,
-        child: const Icon(Icons.switch_account),
+      appBar: AppBar(
+        title: const Text('Sélection du Profil'),
+        centerTitle: true,
+        backgroundColor: AppTheme.primaryDark,
+        foregroundColor: Colors.white,
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Bienvenue sur DiploChain',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppTheme.primaryDark),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Choisissez votre portail d\'accès pour continuer',
+              style: TextStyle(fontSize: 16, color: AppTheme.textSecondary),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 48),
+            _buildRoleCard(
+              context,
+              'Portail Public',
+              'Vérifier l\'authenticité d\'un diplôme',
+              Icons.public,
+              const PublicVerificationPortal(),
+            ),
+            const SizedBox(height: 16),
+            _buildRoleCard(
+              context,
+              'Espace Recruteur',
+              'Scanner et valider des candidatures',
+              Icons.qr_code_scanner,
+              const RecruiterDashboard(),
+            ),
+            const SizedBox(height: 16),
+            _buildRoleCard(
+              context,
+              'Portail Institution',
+              'Émettre et gérer les diplômes certifiés',
+              Icons.account_balance,
+              const UniversityDashboard(),
+            ),
+            const SizedBox(height: 16),
+            _buildRoleCard(
+              context,
+              'Espace Étudiant',
+              'Consulter et partager vos attestations',
+              Icons.school,
+              const StudentDashboard(),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  void _showRolePicker() {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'SÉLECTIONNEZ UN RÔLE',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              const SizedBox(height: 24),
-              _buildRoleOption(0, 'Portail Public (Vérification)', Icons.public),
-              _buildRoleOption(1, 'Application Recruteur (Scan)', Icons.qr_code_scanner),
-              _buildRoleOption(2, 'Université / Institution', Icons.account_balance),
-              _buildRoleOption(3, 'Diplômé / Étudiant', Icons.school),
-            ],
-          ),
+  Widget _buildRoleCard(BuildContext context, String title, String subtitle, IconData icon, Widget destination) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => destination),
         );
       },
-    );
-  }
-
-  Widget _buildRoleOption(int index, String title, IconData icon) {
-    return ListTile(
-      leading: Icon(icon, color: AppTheme.primaryDark),
-      title: Text(title),
-      trailing: _selectedRole == index ? const Icon(Icons.check_circle, color: AppTheme.primaryGreen) : null,
-      onTap: () {
-        setState(() {
-          _selectedRole = index;
-        });
-        Navigator.pop(context);
-      },
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.grey.shade200),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.02),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppTheme.primaryGreen.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: AppTheme.primaryGreen, size: 28),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: AppTheme.primaryDark)),
+                  const SizedBox(height: 4),
+                  Text(subtitle, style: const TextStyle(fontSize: 13, color: AppTheme.textSecondary)),
+                ],
+              ),
+            ),
+            const Icon(Icons.arrow_forward_ios, color: AppTheme.textSecondary, size: 16),
+          ],
+        ),
+      ),
     );
   }
 }

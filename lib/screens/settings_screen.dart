@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/app_theme.dart';
 import '../services/app_settings.dart';
+import 'onboarding_screen.dart';
 
 /// Écran de réglages complet et réutilisable par tous les dashboards.
 class SettingsScreen extends StatefulWidget {
@@ -319,8 +320,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(ctx);
-              // Pop all routes back to root (OnboardingScreen)
-              Navigator.of(context).popUntil((route) => route.isFirst);
+              // Redirect to Onboarding
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+                (route) => false,
+              );
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             child: const Text('DÉCONNECTER', style: TextStyle(color: Colors.white)),
