@@ -15,7 +15,7 @@ extension GetDiplomaCollection on Isar {
 
 const DiplomaSchema = CollectionSchema(
   name: r'Diploma',
-  id: 121248638848593,
+  id: 1212486388485935696,
   properties: {
     r'dateIssued': PropertySchema(
       id: 0,
@@ -60,7 +60,7 @@ const DiplomaSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'uid': IndexSchema(
-      id: 819369547170193,
+      id: 8193695471701937315,
       name: r'uid',
       unique: true,
       replace: true,
@@ -73,7 +73,7 @@ const DiplomaSchema = CollectionSchema(
       ],
     ),
     r'status': IndexSchema(
-      id: -107785170620420,
+      id: -107785170620420283,
       name: r'status',
       unique: false,
       replace: false,
@@ -169,7 +169,7 @@ P _diplomaDeserializeProp<P>(
 }
 
 Id _diplomaGetId(Diploma object) {
-  return object.id;
+  return object.id ?? Isar.autoIncrement;
 }
 
 List<IsarLinkBase<dynamic>> _diplomaGetLinks(Diploma object) {
@@ -583,7 +583,23 @@ extension DiplomaQueryFilter
     });
   }
 
-  QueryBuilder<Diploma, Diploma, QAfterFilterCondition> idEqualTo(Id value) {
+  QueryBuilder<Diploma, Diploma, QAfterFilterCondition> idIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<Diploma, Diploma, QAfterFilterCondition> idIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<Diploma, Diploma, QAfterFilterCondition> idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -593,7 +609,7 @@ extension DiplomaQueryFilter
   }
 
   QueryBuilder<Diploma, Diploma, QAfterFilterCondition> idGreaterThan(
-    Id value, {
+    Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -606,7 +622,7 @@ extension DiplomaQueryFilter
   }
 
   QueryBuilder<Diploma, Diploma, QAfterFilterCondition> idLessThan(
-    Id value, {
+    Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -619,8 +635,8 @@ extension DiplomaQueryFilter
   }
 
   QueryBuilder<Diploma, Diploma, QAfterFilterCondition> idBetween(
-    Id lower,
-    Id upper, {
+    Id? lower,
+    Id? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {

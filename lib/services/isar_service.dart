@@ -19,11 +19,12 @@ class IsarService {
       }
       return await Isar.open(
         [DiplomaSchema],
+        name: 'diplochain_db',
         directory: path ?? '',
         inspector: false,
       );
     }
-    return Future.value(Isar.getInstance());
+    return Future.value(Isar.getInstance('diplochain_db'));
   }
 
   // Diploma Operations

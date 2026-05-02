@@ -4,7 +4,7 @@ part 'diploma.g.dart';
 
 @collection
 class Diploma {
-  Id id = Isar.autoIncrement; // you can also use id = null to auto increment
+  Id? id; 
 
   @Index(unique: true, replace: true)
   late String uid;
