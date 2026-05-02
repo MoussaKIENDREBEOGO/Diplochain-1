@@ -11,7 +11,9 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-  final MobileScannerController _controller = MobileScannerController();
+  final MobileScannerController _controller = MobileScannerController(
+    facing: CameraFacing.back,
+  );
   bool _hasScanned = false;
 
   @override
@@ -72,20 +74,24 @@ class _ScannerScreenState extends State<ScannerScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          MobileScanner(
-            controller: _controller,
-            onDetect: _onDetect,
+          Positioned.fill(
+            child: MobileScanner(
+              controller: _controller,
+              onDetect: _onDetect,
+            ),
           ),
           
           // Custom Overlay for scanning area
-          Container(
-            decoration: ShapeDecoration(
-              shape: QrScannerOverlayShape(
-                borderColor: AppTheme.primaryGreen,
-                borderRadius: 16,
-                borderLength: 40,
-                borderWidth: 8,
-                cutOutSize: MediaQuery.of(context).size.width * 0.7,
+          Positioned.fill(
+            child: Container(
+              decoration: ShapeDecoration(
+                shape: QrScannerOverlayShape(
+                  borderColor: AppTheme.primaryGreen,
+                  borderRadius: 16,
+                  borderLength: 40,
+                  borderWidth: 8,
+                  cutOutSize: MediaQuery.of(context).size.width * 0.7,
+                ),
               ),
             ),
           ),
