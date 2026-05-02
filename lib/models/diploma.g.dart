@@ -15,7 +15,7 @@ extension GetDiplomaCollection on Isar {
 
 const DiplomaSchema = CollectionSchema(
   name: r'Diploma',
-  id: 1212486388485935696,
+  id: 121248638848593,
   properties: {
     r'dateIssued': PropertySchema(
       id: 0,
@@ -60,7 +60,7 @@ const DiplomaSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'uid': IndexSchema(
-      id: 8193695471701937315,
+      id: 819369547170193,
       name: r'uid',
       unique: true,
       replace: true,
@@ -73,7 +73,7 @@ const DiplomaSchema = CollectionSchema(
       ],
     ),
     r'status': IndexSchema(
-      id: -107785170620420283,
+      id: -107785170620420,
       name: r'status',
       unique: false,
       replace: false,
