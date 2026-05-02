@@ -8,6 +8,7 @@ import '../screens/student_dashboard.dart';
 void showRolePicker(BuildContext context) {
   showModalBottomSheet(
     context: context,
+    constraints: const BoxConstraints(maxWidth: double.infinity), // Force full width on desktop so it doesn't float
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
