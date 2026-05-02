@@ -3,6 +3,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/app_theme.dart';
 import '../main.dart';
 import '../models/diploma.dart';
+import 'scanner_screen.dart';
 
 class PublicVerificationPortal extends StatefulWidget {
   const PublicVerificationPortal({super.key});
@@ -156,13 +157,15 @@ class _PublicVerificationPortalState extends State<PublicVerificationPortal> {
                                       prefixIcon: const Icon(LucideIcons.hash, color: AppTheme.primaryGreen),
                                       suffixIcon: IconButton(
                                         icon: const Icon(LucideIcons.scanLine, color: AppTheme.primaryDark),
-                                        onPressed: () {
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                            const SnackBar(
-                                              content: Text('Ouverture de la caméra pour le scan QR...'),
-                                              backgroundColor: AppTheme.primaryDark,
-                                            ),
+                                        onPressed: () async {
+                                          final scannedId = await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => const ScannerScreen()),
                                           );
+                                          if (scannedId != null && scannedId is String) {
+                                            _idController.text = scannedId;
+                                            _verify();
+                                          }
                                         },
                                       ),
                                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),

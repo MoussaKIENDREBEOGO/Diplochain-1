@@ -4,6 +4,7 @@ import '../theme/app_theme.dart';
 
 import '../models/diploma.dart';
 import '../main.dart';
+import 'scanner_screen.dart';
 
 class RecruiterDashboard extends StatefulWidget {
   const RecruiterDashboard({super.key});
@@ -253,7 +254,16 @@ class _RecruiterDashboardState extends State<RecruiterDashboard> {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final scannedId = await Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ScannerScreen()),
+                    );
+                    if (scannedId != null && scannedId is String) {
+                      _searchController.text = scannedId;
+                      _handleSearch();
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: AppTheme.primaryDark,
@@ -473,7 +483,7 @@ class _RecruiterDashboardState extends State<RecruiterDashboard> {
         secondary: Icon(icon, color: AppTheme.primaryDark),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
         value: value,
-        activeColor: AppTheme.primaryGreen,
+        activeThumbColor: AppTheme.primaryGreen,
         onChanged: (bool newValue) {},
       ),
     );
