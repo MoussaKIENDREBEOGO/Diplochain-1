@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../theme/app_theme.dart';
+import '../utils/role_picker.dart';
 import 'settings_screen.dart';
 
 class StudentDashboard extends StatefulWidget {
@@ -44,9 +45,25 @@ class _StudentDashboardState extends State<StudentDashboard> {
             },
           ),
           const SizedBox(width: 8),
-        ] : null,
+        ] : [
+          IconButton(
+            icon: Icon(LucideIcons.settings),
+            onPressed: () => showRolePicker(context),
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
-      body: pages[_currentIndex],
+      body: PopScope(
+        canPop: _currentIndex == 0,
+        onPopInvokedWithResult: (didPop, result) {
+          if (!didPop) {
+            setState(() {
+              _currentIndex = 0;
+            });
+          }
+        },
+        child: pages[_currentIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {

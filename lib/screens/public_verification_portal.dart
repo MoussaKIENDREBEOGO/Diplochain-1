@@ -3,6 +3,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/app_theme.dart';
 import '../main.dart';
 import '../models/diploma.dart';
+import '../utils/role_picker.dart';
 import 'scanner_screen.dart';
 
 class PublicVerificationPortal extends StatefulWidget {
@@ -62,6 +63,13 @@ class _PublicVerificationPortalState extends State<PublicVerificationPortal> {
             floating: false,
             pinned: true,
             backgroundColor: AppTheme.primaryDark,
+            actions: [
+              IconButton(
+                icon: Icon(LucideIcons.settings, color: Colors.white),
+                onPressed: () => showRolePicker(context),
+              ),
+              const SizedBox(width: 8),
+            ],
             flexibleSpace: FlexibleSpaceBar(
               title: const Text('VÉRIFICATION PUBLIQUE', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
               centerTitle: true,

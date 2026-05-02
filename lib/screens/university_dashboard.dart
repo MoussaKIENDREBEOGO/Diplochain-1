@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/app_theme.dart';
-
+import '../utils/role_picker.dart';
 import '../main.dart';
 import '../models/diploma.dart';
 import 'settings_screen.dart';
@@ -200,10 +200,24 @@ class _UniversityDashboardState extends State<UniversityDashboard> {
               backgroundColor: Colors.white24,
               child: Icon(LucideIcons.user, color: Colors.white, size: 20),
             ),
-          const SizedBox(width: 16),
+          IconButton(
+            icon: Icon(LucideIcons.settings),
+            onPressed: () => showRolePicker(context),
+          ),
+          const SizedBox(width: 8),
         ],
       ),
-      body: pages[_currentIndex],
+      body: PopScope(
+        canPop: _currentIndex == 0,
+        onPopInvokedWithResult: (didPop, result) {
+          if (!didPop) {
+            setState(() {
+              _currentIndex = 0;
+            });
+          }
+        },
+        child: pages[_currentIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../theme/app_theme.dart';
-import '../main.dart';
+import 'public_verification_portal.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -142,8 +142,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         margin: const EdgeInsets.symmetric(horizontal: 4),
-                        height: 12, // Increased height slightly for better touch area
-                        width: _currentPage == index ? 32 : 12, // Slightly larger inactive dots for touch
+                        height: 12,
+                        width: _currentPage == index ? 32 : 12,
                         decoration: BoxDecoration(
                           color: _currentPage == index ? const Color(0xFFF59E0B) : Colors.white.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(6),
@@ -160,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     if (_currentPage == _pages.length - 1) {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const RoleSelectionScreen()),
+                        MaterialPageRoute(builder: (context) => const PublicVerificationPortal()),
                       );
                     } else {
                       _pageController.nextPage(
@@ -191,7 +191,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const RoleSelectionScreen()),
+                        MaterialPageRoute(builder: (context) => const PublicVerificationPortal()),
                       );
                     },
                     child: Text(
