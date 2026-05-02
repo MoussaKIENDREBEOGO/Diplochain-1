@@ -70,6 +70,23 @@ class _RecruiterDashboardState extends State<RecruiterDashboard> {
             const Divider(height: 24),
             Text('Institution: ${diploma.institutionName}'),
             Text('Émis le: ${diploma.dateIssued.day}/${diploma.dateIssued.month}/${diploma.dateIssued.year}'),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(color: Colors.grey.shade100, borderRadius: BorderRadius.circular(8)),
+              child: const Row(
+                children: [
+                  Icon(LucideIcons.binary, size: 14, color: AppTheme.textSecondary),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Signature Crypto: 0x8f4d...3a1c9',
+                      style: TextStyle(fontFamily: 'monospace', fontSize: 11, color: AppTheme.textSecondary),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
         actions: [
