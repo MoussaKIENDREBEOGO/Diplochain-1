@@ -35,17 +35,16 @@ class _StudentDashboardState extends State<StudentDashboard> {
       appBar: AppBar(
         title: Text(titles[_currentIndex]),
         centerTitle: true,
-        actions: _currentIndex == 0 ? [
-          IconButton(
-            icon: const Icon(LucideIcons.share2),
-            onPressed: () {
-              setState(() {
-                _currentIndex = 1;
-              });
-            },
-          ),
-          const SizedBox(width: 8),
-        ] : [
+        actions: [
+          if (_currentIndex == 0)
+            IconButton(
+              icon: const Icon(LucideIcons.share2),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+              },
+            ),
           IconButton(
             icon: Icon(LucideIcons.list),
             onPressed: () => showRolePicker(context),
