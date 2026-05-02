@@ -201,7 +201,7 @@ class _UniversityDashboardState extends State<UniversityDashboard> {
               child: Icon(LucideIcons.user, color: Colors.white, size: 20),
             ),
           IconButton(
-            icon: Icon(LucideIcons.settings),
+            icon: Icon(LucideIcons.list),
             onPressed: () => showRolePicker(context),
           ),
           const SizedBox(width: 8),

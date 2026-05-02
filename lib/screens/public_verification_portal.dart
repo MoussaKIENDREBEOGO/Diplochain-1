@@ -65,7 +65,7 @@ class _PublicVerificationPortalState extends State<PublicVerificationPortal> {
             backgroundColor: AppTheme.primaryDark,
             actions: [
               IconButton(
-                icon: Icon(LucideIcons.settings, color: Colors.white),
+                icon: Icon(LucideIcons.list, color: Colors.white),
                 onPressed: () => showRolePicker(context),
               ),
               const SizedBox(width: 8),

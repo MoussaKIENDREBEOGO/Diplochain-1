@@ -47,7 +47,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
           const SizedBox(width: 8),
         ] : [
           IconButton(
-            icon: Icon(LucideIcons.settings),
+            icon: Icon(LucideIcons.list),
             onPressed: () => showRolePicker(context),
           ),
           const SizedBox(width: 8),
