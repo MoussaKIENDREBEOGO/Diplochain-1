@@ -4,6 +4,15 @@
 
 ---
 
+## ⛓️ Vision Blockchain & Décentralisation
+
+Le cœur de DiploChain repose sur la philosophie du Web3 et de la **technologie Blockchain** :
+* **Immuabilité** : Une fois qu'une université certifiée émet un diplôme, celui-ci est ancré de manière permanente et cryptographique. Il ne peut être ni altéré, ni falsifié, ni supprimé.
+* **Transparence Absolue** : Tout recruteur ou institution peut vérifier la validité du diplôme en interrogeant publiquement le registre décentralisé, sans avoir besoin de contacter l'université émettrice.
+* **Souveraineté Numérique (Self-Sovereign Identity)** : Le diplômé devient l'unique et véritable propriétaire de ses données académiques. Fini les pertes d'originaux papier : le titre académique réside de façon permanente et sécurisée dans son portefeuille numérique.
+
+---
+
 ## 🌟 Fonctionnalités Principales
 
 L'application est divisée en **4 portails distincts**, accessibles depuis un menu unifié, adaptés aux différents acteurs du système éducatif et professionnel :
