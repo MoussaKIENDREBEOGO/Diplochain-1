@@ -5,6 +5,7 @@ import '../theme/app_theme.dart';
 import '../models/diploma.dart';
 import '../main.dart';
 import 'scanner_screen.dart';
+import 'settings_screen.dart';
 
 class RecruiterDashboard extends StatefulWidget {
   const RecruiterDashboard({super.key});
@@ -378,116 +379,23 @@ class _RecruiterDashboardState extends State<RecruiterDashboard> {
   }
 
   Widget _buildProfileTab() {
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: [
-        const Center(
-          child: CircleAvatar(
-            radius: 50,
-            backgroundColor: AppTheme.primaryDark,
-            child: Icon(LucideIcons.building, size: 50, color: Colors.white),
-          ),
-        ),
-        const SizedBox(height: 16),
-        const Center(
-          child: Text(
-            'Coris Bank International',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppTheme.primaryDark),
-          ),
-        ),
-        const Center(
-          child: Text(
-            'Compte Entreprise • Recrutement',
-            style: TextStyle(color: AppTheme.textSecondary),
-          ),
-        ),
-        const SizedBox(height: 32),
-        _buildSettingsMenuItem(LucideIcons.users, 'Gestion des Accès RH'),
-        _buildSettingsMenuItem(LucideIcons.fileText, 'Rapports de vérification'),
-        _buildSettingsMenuItem(LucideIcons.creditCard, 'Abonnement et Facturation'),
-        const SizedBox(height: 24),
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(LucideIcons.logOut),
-          label: const Text('Se déconnecter'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red.withValues(alpha: 0.1),
-            foregroundColor: Colors.red,
-            elevation: 0,
-            minimumSize: const Size(double.infinity, 56),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          ),
-        ),
-      ],
+    return const SettingsScreen(
+      userRole: 'Recruteur',
+      userName: 'Coris Bank International',
+      userSubtitle: 'Compte Entreprise · Recrutement',
+      userIcon: LucideIcons.building,
     );
   }
 
   Widget _buildSettingsTab() {
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: [
-        const Text(
-          'PRÉFÉRENCES',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.textSecondary, letterSpacing: 1.1),
-        ),
-        const SizedBox(height: 16),
-        _buildSettingsToggleItem(LucideIcons.bell, 'Notifications Push', true),
-        _buildSettingsToggleItem(LucideIcons.moon, 'Mode Sombre', false),
-        _buildSettingsMenuItem(LucideIcons.globe, 'Langue (Français)'),
-        const SizedBox(height: 32),
-        const Text(
-          'SÉCURITÉ',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.textSecondary, letterSpacing: 1.1),
-        ),
-        const SizedBox(height: 16),
-        _buildSettingsToggleItem(LucideIcons.fingerprint, 'Authentification Biométrique', true),
-        _buildSettingsMenuItem(LucideIcons.lock, 'Changer le mot de passe'),
-        const SizedBox(height: 32),
-        const Text(
-          'A PROPOS',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.textSecondary, letterSpacing: 1.1),
-        ),
-        const SizedBox(height: 16),
-        _buildSettingsMenuItem(LucideIcons.info, 'Conditions d\'utilisation'),
-        _buildSettingsMenuItem(LucideIcons.shieldAlert, 'Politique de confidentialité'),
-      ],
+    return const SettingsScreen(
+      userRole: 'Recruteur',
+      userName: 'Coris Bank International',
+      userSubtitle: 'Compte Entreprise · Réglages',
+      userIcon: LucideIcons.settings,
     );
   }
 
-  Widget _buildSettingsMenuItem(IconData icon, String title) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade100),
-      ),
-      child: ListTile(
-        leading: Icon(icon, color: AppTheme.primaryDark),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
-        trailing: const Icon(LucideIcons.chevronRight, color: AppTheme.textSecondary, size: 20),
-        onTap: () {},
-      ),
-    );
-  }
-
-  Widget _buildSettingsToggleItem(IconData icon, String title, bool value) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade100),
-      ),
-      child: SwitchListTile(
-        secondary: Icon(icon, color: AppTheme.primaryDark),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
-        value: value,
-        activeThumbColor: AppTheme.primaryGreen,
-        onChanged: (bool newValue) {},
-      ),
-    );
-  }
 
   Widget _buildVerificationTile(String name, String detail, String status, bool isValid) {
     return Container(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../theme/app_theme.dart';
+import 'settings_screen.dart';
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
@@ -344,64 +345,11 @@ class _StudentDashboardState extends State<StudentDashboard> {
   }
 
   Widget _buildProfileTab() {
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: [
-        const Center(
-          child: CircleAvatar(
-            radius: 50,
-            backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=traore'),
-          ),
-        ),
-        const SizedBox(height: 16),
-        const Center(
-          child: Text(
-            'Abdoulaye Traoré',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppTheme.primaryDark),
-          ),
-        ),
-        const Center(
-          child: Text(
-            'abdoulaye.traore@email.bf',
-            style: TextStyle(color: AppTheme.textSecondary),
-          ),
-        ),
-        const SizedBox(height: 32),
-        _buildProfileMenuItem(LucideIcons.user, 'Informations Personnelles'),
-        _buildProfileMenuItem(LucideIcons.shield, 'Sécurité et Mot de passe'),
-        _buildProfileMenuItem(LucideIcons.settings, 'Préférences'),
-        _buildProfileMenuItem(LucideIcons.helpCircle, 'Aide et Support'),
-        const SizedBox(height: 24),
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(LucideIcons.logOut),
-          label: const Text('Se déconnecter'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red.withValues(alpha: 0.1),
-            foregroundColor: Colors.red,
-            elevation: 0,
-            minimumSize: const Size(double.infinity, 56),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildProfileMenuItem(IconData icon, String title) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade100),
-      ),
-      child: ListTile(
-        leading: Icon(icon, color: AppTheme.primaryDark),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
-        trailing: const Icon(LucideIcons.chevronRight, color: AppTheme.textSecondary, size: 20),
-        onTap: () {},
-      ),
+    return const SettingsScreen(
+      userRole: 'Étudiant',
+      userName: 'Abdoulaye Traoré',
+      userSubtitle: 'Diplômé · Université Joseph Ki-Zerbo',
+      userIcon: LucideIcons.graduationCap,
     );
   }
 

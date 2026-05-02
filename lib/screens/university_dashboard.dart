@@ -4,6 +4,7 @@ import '../theme/app_theme.dart';
 
 import '../main.dart';
 import '../models/diploma.dart';
+import 'settings_screen.dart';
 
 class UniversityDashboard extends StatefulWidget {
   const UniversityDashboard({super.key});
@@ -471,71 +472,14 @@ class _UniversityDashboardState extends State<UniversityDashboard> {
   }
 
   Widget _buildSettingsTab() {
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: [
-        const Center(
-          child: CircleAvatar(
-            radius: 50,
-            backgroundColor: AppTheme.primaryDark,
-            child: Icon(LucideIcons.landmark, size: 50, color: Colors.white),
-          ),
-        ),
-        const SizedBox(height: 16),
-        const Center(
-          child: Text(
-            'Université Joseph Ki-Zerbo',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppTheme.primaryDark),
-          ),
-        ),
-        const Center(
-          child: Text(
-            'Institution Accréditée • Burkina Faso',
-            style: TextStyle(color: AppTheme.textSecondary),
-          ),
-        ),
-        const SizedBox(height: 32),
-        const Text(
-          'PARAMÈTRES INSTITUTIONNELS',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.textSecondary, letterSpacing: 1.1),
-        ),
-        const SizedBox(height: 16),
-        _buildSettingsMenuItem(LucideIcons.key, 'Gestion des Clés Cryptographiques'),
-        _buildSettingsMenuItem(LucideIcons.users, 'Gestionnaires Autorisés'),
-        _buildSettingsMenuItem(LucideIcons.fileSignature, 'Modèles de Diplômes'),
-        const SizedBox(height: 24),
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(LucideIcons.logOut),
-          label: const Text('Se déconnecter'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red.withValues(alpha: 0.1),
-            foregroundColor: Colors.red,
-            elevation: 0,
-            minimumSize: const Size(double.infinity, 56),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          ),
-        ),
-      ],
+    return const SettingsScreen(
+      userRole: 'Université',
+      userName: 'Université Joseph Ki-Zerbo',
+      userSubtitle: 'Institution Accréditée · Burkina Faso',
+      userIcon: LucideIcons.landmark,
     );
   }
 
-  Widget _buildSettingsMenuItem(IconData icon, String title) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade100),
-      ),
-      child: ListTile(
-        leading: Icon(icon, color: AppTheme.primaryDark),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
-        trailing: const Icon(LucideIcons.chevronRight, color: AppTheme.textSecondary, size: 20),
-        onTap: () {},
-      ),
-    );
-  }
 
   Widget _buildStatCard(String title, String value, String trend, IconData icon, Color color, {bool isFullWidth = false}) {
     return Container(

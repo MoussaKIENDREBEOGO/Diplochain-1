@@ -6,6 +6,7 @@ import 'screens/recruiter_dashboard.dart';
 import 'screens/university_dashboard.dart';
 import 'screens/student_dashboard.dart';
 import 'services/isar_service.dart';
+import 'services/app_settings.dart';
 import 'models/diploma.dart';
 
 final isarService = IsarService();
@@ -20,23 +21,30 @@ class DiploChainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'DiploChain',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      home: FutureBuilder(
-        future: _initApp(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return const OnboardingScreen();
-          }
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(color: AppTheme.primaryGreen),
-            ),
-          );
-        },
-      ),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: appSettings.themeMode,
+      builder: (context, themeMode, _) {
+        return MaterialApp(
+          title: 'DiploChain',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeMode,
+          home: FutureBuilder(
+            future: _initApp(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return const OnboardingScreen();
+              }
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(color: AppTheme.primaryGreen),
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
